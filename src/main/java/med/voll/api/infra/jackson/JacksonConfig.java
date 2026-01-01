@@ -1,4 +1,4 @@
-package med.voll.api.infra.config;
+package med.voll.api.infra.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

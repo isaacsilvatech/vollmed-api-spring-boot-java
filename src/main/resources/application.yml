@@ -1,18 +1,19 @@
-server:
-  servlet.context-path: /vollmed
-  error.include-stacktrace: never
-
 spring:
-  application.name: vollmed_api
-  mvc.servlet.path:  /api
+  profiles:
+    default: dev
 
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/vollmed_api?useSSL=false&serverTimezone=UTC
-    username: root
-    password: root
+  application:
+    name: vollmed_api
 
-api.security:
-    token:
-      secret: '${JWT_SECRET:yqWhuO;JrmbW=2W8o0N#EBTLxZi4Sbe4aAv#-F}'
-      issuer: vollmed_api
+server:
+  servlet:
+    context-path: /vollmed
+  error:
+    include-stacktrace: never
+
+  mvc:
+    servlet:
+      path: /api
+
+
+

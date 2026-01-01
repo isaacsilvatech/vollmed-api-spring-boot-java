@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/vollmed_api_dev?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:yqWhuO;JrmbW=2W8o0N#EBTLxZi4Sbe4aAv#-F}
+      issuer: vollmed_api

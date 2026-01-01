@@ -2,13 +2,12 @@ package med.voll.api.domain.medico;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.application.dto.CriarMedicoDto;
 import med.voll.api.application.dto.AtualizarMedicoDto;
-import med.voll.api.domain.paciente.endereco.Endereco;
+import med.voll.api.domain.endereco.Endereco;
 
 import java.util.Objects;
 

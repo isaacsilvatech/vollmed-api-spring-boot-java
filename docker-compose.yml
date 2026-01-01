@@ -4,7 +4,7 @@ services:
     container_name: vollmed-mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: vollmed_api
+      MYSQL_DATABASE: vollmed_api_dev
       MYSQL_ROOT_HOST: '%'
     ports:
       - "3306:3306"
