@@ -2,7 +2,7 @@
 
 Esta aplicação é uma **API REST** para gerenciamento de médicos, pacientes e consultas médicas.
 
-O objetivo do projeto é demonstrar uma arquitetura backend organizada, com separação clara de responsabilidades, aplicação de boas práticas e foco em **manutenibilidade**, sem overengineering.
+O objetivo do projeto é demonstrar uma arquitetura backend organizada, com separação clara de responsabilidades, aplicação de boas práticas e foco em **manutenibilidade**.
 
 ---
 
@@ -53,7 +53,6 @@ docker-compose up
 
 Isso irá subir:
 - Banco de dados MySQL
-- Aplicação Spring Boot
 
 ---
 
