@@ -53,7 +53,6 @@ docker-compose up
 
 Isso irá subir:
 - Banco de dados MySQL
-- Aplicação Spring Boot
 
 ---
 
