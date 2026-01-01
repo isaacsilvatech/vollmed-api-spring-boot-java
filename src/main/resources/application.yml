@@ -1,28 +1,17 @@
-# Configurações do servidor
 server:
   servlet.context-path: /vollmed
   error.include-stacktrace: never
 
 spring:
-  # Configurações da aplicação
   application.name: vollmed_api
-
-  # Configurações do MVC
   mvc.servlet.path:  /api
 
-  # Configurações do DataSource
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/vollmed_api?useSSL=false&serverTimezone=UTC
     username: root
-    password: 123456
+    password: root
 
-  # Configurações do JPA
-  jpa:
-    show-sql: true
-    properties.hibernate.format_sql: true
-
-# Configurações da API Security
 api.security:
     token:
       secret: '${JWT_SECRET:yqWhuO;JrmbW=2W8o0N#EBTLxZi4Sbe4aAv#-F}'
