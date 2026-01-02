@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.application.dto.PacienteDto;
+import med.voll.api.application.dto.CriarPacienteDto;
 import med.voll.api.application.dto.AtualizarPacienteDto;
 import med.voll.api.domain.endereco.Endereco;
 
@@ -22,7 +22,6 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private String nome;
     private String cpf;
     private String email;
@@ -32,7 +31,7 @@ public class Paciente {
     @Embedded
     private Endereco endereco;
 
-    public static Paciente criar(PacienteDto pacienteDto) {
+    public static Paciente criar(CriarPacienteDto pacienteDto) {
         var paciente = new Paciente();
         paciente.nome = pacienteDto.nome();
         paciente.cpf = pacienteDto.cpf();

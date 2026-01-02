@@ -14,9 +14,9 @@ public class AgendarConsultaPacienteMesmoDiaValidator implements AgendarConsulta
 
     @Override
     public void validate(Consulta consulta) throws ValidationException {
-        var primeiroHorario = consulta.getData().withHour(7);
-        var ultimoHorario = consulta.getData().withHour(18);
-        if(consultaRepository.existsByPacienteIdAndDataBetween(consulta.getPaciente().getId(), primeiroHorario, ultimoHorario)) {
+        var primeiroHorario = consulta.getDataDe().withHour(7);
+        var ultimoHorario = consulta.getDataDe().withHour(18);
+        if(consultaRepository.existsByPacienteIdAndDataDeBetween(consulta.getPaciente().getId(), primeiroHorario, ultimoHorario)) {
             throw new ValidationException("Não é possivel agendar mais de uma consulta por paciente!");
         }
     }

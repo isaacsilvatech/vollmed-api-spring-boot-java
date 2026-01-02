@@ -19,7 +19,7 @@ public class ConsultaCancelarAntecedenciaValidator implements ConsultaCancelarVa
     @Override
     public void validate(Consulta consulta) throws ValidationException {
         var agora = LocalDateTime.now();
-        var data = consulta.getData();
+        var data = consulta.getDataDe();
         var diferenca = Duration.between(agora, data).toHours();
         if (diferenca > 0 && diferenca < 24) {
             throw new ValidationException("A consulta só pode ser cancelada com antecedência minima de 24 horas!");

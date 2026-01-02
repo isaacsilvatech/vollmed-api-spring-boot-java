@@ -12,7 +12,7 @@ public class AgendarConsultaDataNoFuturoValidator implements AgendarConsultaVali
     @Override
     public void validate(Consulta consulta) throws ValidationException {
         var hoje = LocalDateTime.now();
-        var data = consulta.getData();
+        var data = consulta.getDataDe();
         if(data.isBefore(hoje)) {
             throw new ValidationException("Não é possivel agendar para uma data no passado!");
         }

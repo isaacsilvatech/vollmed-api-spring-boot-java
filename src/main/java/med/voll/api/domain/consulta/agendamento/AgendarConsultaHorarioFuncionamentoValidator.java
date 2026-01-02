@@ -11,7 +11,7 @@ public class AgendarConsultaHorarioFuncionamentoValidator implements AgendarCons
 
     @Override
     public void validate(Consulta consulta) throws ValidationException {
-        var data = consulta.getData();
+        var data = consulta.getDataDe();
         var domingo = data.getDayOfWeek().equals(DayOfWeek.SUNDAY);
         var antesHorarioFuncionamento = data.getHour() < 7;
         var depoisHorarioFuncionamento = data.getHour() > 18;

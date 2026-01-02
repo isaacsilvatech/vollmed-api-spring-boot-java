@@ -30,16 +30,24 @@ public class Consulta {
     @JoinColumn(name = "medico_id")
     private Medico medico;
 
-    private LocalDateTime data;
+    @Column(name = "data_de")
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime dataDe;
+
+    @Column(name = "data_ate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime dataAte;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "motivo_cancelamento")
     private MotivoCancelamento motivoCancelamento;
 
-    public static Consulta agendar(Paciente paciente, Medico medico, LocalDateTime data) {
+    public static Consulta agendar(Paciente paciente, Medico medico, LocalDateTime dataDe, LocalDateTime dataAte) {
         var consulta = new Consulta();
         consulta.paciente = paciente;
         consulta.medico = medico;
-        consulta.data = data;
+        consulta.dataDe = dataDe;
+        consulta.dataAte = dataAte;
         return consulta;
     }
 

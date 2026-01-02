@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import med.voll.api.application.dto.DetalhesPacienteDto;
-import med.voll.api.application.dto.PacienteDto;
+import med.voll.api.application.dto.CriarPacienteDto;
 import med.voll.api.application.dto.ItemListaPacienteDto;
 import med.voll.api.application.dto.AtualizarPacienteDto;
 import med.voll.api.domain.paciente.Paciente;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/paciente")
+@RequestMapping("/pacientes")
 @SecurityRequirement(name = "bearer-key")
 @RequiredArgsConstructor
 public class PacienteController {
@@ -26,7 +26,7 @@ public class PacienteController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DetalhesPacienteDto> create(@RequestBody @Valid PacienteDto pacienteDto, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<DetalhesPacienteDto> create(@RequestBody @Valid CriarPacienteDto pacienteDto, UriComponentsBuilder uriComponentsBuilder) {
         var paciente = pacienteRepository.save(Paciente.criar(pacienteDto));
         var uri = uriComponentsBuilder.path("/paciente/{idConsulta}").buildAndExpand(paciente.getId()).toUri();
         return ResponseEntity.created(uri).body(new DetalhesPacienteDto(paciente));

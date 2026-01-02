@@ -14,7 +14,10 @@ public class AgendarConsultaMedicoComConsultaNaDataValidator implements AgendarC
 
     @Override
     public void validate(Consulta consulta) throws ValidationException {
-        if(consultaRepository.existsByMedicoIdAndData(consulta.getPaciente().getId(), consulta.getData())) {
+        if(consultaRepository.existsByMedicoIdAndDataDeLessThanEqualAndDataAteGreaterThanEqual(consulta.getPaciente().getId(),
+                consulta.getDataDe(),
+                consulta.getDataAte()
+                )) {
             throw new ValidationException("Não é possivel agendar uma consulta para um médico com uma consulta nesse mesmo hórario!");
         }
     }

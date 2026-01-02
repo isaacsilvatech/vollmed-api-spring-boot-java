@@ -2,6 +2,7 @@ package med.voll.api.application.usecase;
 
 import lombok.RequiredArgsConstructor;
 import med.voll.api.application.dto.AgendarConsultaDto;
+import med.voll.api.application.dto.DetalhesConsultaDto;
 import med.voll.api.application.exception.EspecialidadeNaoEncontradaException;
 import med.voll.api.application.exception.PacienteNaoEncontradoException;
 import med.voll.api.domain.consulta.Consulta;
@@ -29,26 +30,26 @@ public class AgendarConsultaUseCase {
     private final List<AgendarConsultaValidator> consultaAgendarValidators;
 
     @Transactional
-    public Consulta agendar(AgendarConsultaDto consultaDto) {
+    public DetalhesConsultaDto agendar(AgendarConsultaDto consultaDto) {
 
         var paciente = pacienteRepository.findById(consultaDto.idPaciente()).orElseThrow(() ->
                 new PacienteNaoEncontradoException("Id do paciente informado não existe!"));
 
-        var medico = obterMedico(consultaDto.idMedico(), consultaDto.especialidade(), consultaDto.data());
-        var consulta = Consulta.agendar(paciente, medico, consultaDto.data());
+        var medico = obterMedico(consultaDto.idMedico(), consultaDto.especialidade(), consultaDto.dataDe(), consultaDto.dataAte());
+        var consulta = Consulta.agendar(paciente, medico, consultaDto.dataDe(), consultaDto.dataAte());
 
         consultaAgendarValidators.forEach(v -> v.validate(consulta));
 
-        return consultaRepository.save(consulta);
+        return new DetalhesConsultaDto(consultaRepository.save(consulta));
     }
 
-    private Medico obterMedico(Long idMedico, Especialidade especialidade, LocalDateTime data) {
+    private Medico obterMedico(Long idMedico, Especialidade especialidade, LocalDateTime dataDe, LocalDateTime dataAte) {
         if (Objects.nonNull(idMedico)) {
             return medicoRepository.getReferenceById(idMedico);
         }
         if (Objects.isNull(especialidade)) {
             throw new EspecialidadeNaoEncontradaException("Especialidade é obrigatória quando médico não for escolhido!");
         }
-        return medicoRepository.findFirstRandomByEspecialidadeAndFreeData(especialidade, data);
+        return medicoRepository.escolherMedicoAleatorioLivreNaData(especialidade, dataDe, dataAte);
     }
 }

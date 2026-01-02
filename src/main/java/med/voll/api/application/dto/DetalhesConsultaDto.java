@@ -5,18 +5,20 @@ import med.voll.api.domain.consulta.cancelamento.MotivoCancelamento;
 
 import java.time.LocalDateTime;
 
-public record DatalhesConsultaDto(
+public record DetalhesConsultaDto(
         Long id,
         Long idMedico,
         Long idPaciente,
-        LocalDateTime data,
+        LocalDateTime dataDe,
+        LocalDateTime dataAte,
         MotivoCancelamento motivoCancelamento
 ) {
-    public DatalhesConsultaDto(Consulta consulta) {
+    public DetalhesConsultaDto(Consulta consulta) {
         this(consulta.getId(),
                 consulta.getMedico().getId(),
                 consulta.getPaciente().getId(),
-                consulta.getData(),
+                consulta.getDataDe(),
+                consulta.getDataAte(),
                 consulta.getMotivoCancelamento());
     }
 }

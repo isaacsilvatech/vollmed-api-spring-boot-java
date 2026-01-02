@@ -14,7 +14,11 @@ public record AgendarConsultaDto(
 
         @NotNull
         @Future
-        LocalDateTime data,
+        LocalDateTime dataDe,
+
+        @NotNull
+        @Future
+        LocalDateTime dataAte,
 
         Especialidade especialidade
 ) {
